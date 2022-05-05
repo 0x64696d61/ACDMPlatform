@@ -57,100 +57,99 @@ describe(contractName, function () {
         percentSecondReferralLevel = await contractACDMPlatform.percentSecondReferralLevel()
     })
 
-    // it("Should be deployed", async function () {
-    //     expect(contractACDMPlatform.address).to.be.properAddress
-    //
-    // })
-    // describe("Selling round", function () {
-    //
-    //     describe("buyToken method", function () {
-    //         it("User should be can buyToken tokens", async function () {
-    //             let beforeBalanceACMDToken = await acdmToken.balanceOf(acc1.address)
-    //             const tx = await contractACDMPlatform.buyToken({value: ethers.constants.WeiPerEther})
-    //
-    //             expect(await expect(() => tx).to.changeEtherBalance(acc1, BigInt(-ethers.constants.WeiPerEther)))
-    //             expect(await acdmToken.balanceOf(acc1.address)).to.be.equal(beforeBalanceACMDToken.add(tokenValue))
-    //             expect(await acdmToken.balanceOf(contractACDMPlatform.address)).to.be.equal(0)
-    //
-    //         })
-    //     })
-    // })
-    //
-    // describe("Trading round", function () {
-    //
-    //     beforeEach(async function () {
-    //         await contractACDMPlatform.buyToken({value: ethers.constants.WeiPerEther})
-    //         await contractACDMPlatform.closeSellingRound()
-    //         await acdmToken.approve(contractACDMPlatform.address, ethers.constants.WeiPerEther)
-    //         await contractACDMPlatform.createOrder(tokenValue, ethers.constants.WeiPerEther)
-    //     })
-    //
-    //     describe("createOrder method", function () {
-    //         it("User should be can Create order to sell tokens", async function () {
-    //             expect(await acdmToken.balanceOf(acc1.address)).to.be.equal(0)
-    //         })
-    //     })
-    //
-    //     describe("buyOrder method", function () {
-    //         it("User should be can Buy order", async function () {
-    //             const tx = await contractACDMPlatform.connect(acc2).buyOrder(0, {value: ethers.constants.WeiPerEther})
-    //             const FirstReferralValue = BigInt(1_000_000_000_000_000_000 / 100 * percentFirstReferralLevel)
-    //             const SecondReferralValue = BigInt(1_000_000_000_000_000_000 / 100 * percentSecondReferralLevel)
-    //             const treasuryReward = FirstReferralValue + SecondReferralValue
-    //
-    //             expect(await expect(() => tx).to.changeEtherBalance(acc1, ethers.constants.WeiPerEther.toBigInt() - treasuryReward))
-    //             expect(await acdmToken.balanceOf(acc2.address)).to.be.equal(tokenValue)
-    //         })
-    //         it("Trying buy not existed order", async function () {
-    //             await expect(contractACDMPlatform.buyOrder(999, {value: ethers.constants.WeiPerEther})).to.be.revertedWith("Order not exist")
-    //         })
-    //     })
-    //     describe("cancelOrder method", function () {
-    //
-    //         it("User should be can cancel order", async function () {
-    //             await contractACDMPlatform.cancelOrder(0)
-    //             await expect(contractACDMPlatform.cancelOrder(0)).to.be.revertedWith("Permission denied")
-    //         })
-    //     })
-    //
-    // })
-    //
-    // describe("Referral checking", function () {
-    //     beforeEach(async function () {
-    //         await contractACDMPlatform.connect(acc3).buyToken({value: ethers.constants.WeiPerEther})
-    //         await acdmToken.connect(acc3).approve(contractACDMPlatform.address, ethers.constants.WeiPerEther)
-    //         await contractACDMPlatform.closeSellingRound()
-    //
-    //     })
-    //
-    //     it("All referrals should get reward", async function () {
-    //         await contractACDMPlatform.connect(acc1).userRegistration()
-    //         await contractACDMPlatform.connect(acc2).userRegistrationWithsReferral(acc1.address)
-    //         await contractACDMPlatform.connect(acc3).userRegistrationWithsReferral(acc2.address)
-    //
-    //
-    //         await contractACDMPlatform.connect(acc3).createOrder(tokenValue, ethers.constants.WeiPerEther)
-    //         const tx = await contractACDMPlatform.connect(acc3).buyOrder(0, {value: ethers.constants.WeiPerEther})
-    //
-    //         const FirstReferralValue = BigInt(1_000_000_000_000_000_000 / 100 * percentFirstReferralLevel)
-    //         const SecondReferralValue = BigInt(1_000_000_000_000_000_000 / 100 * percentSecondReferralLevel)
-    //         expect(await expect(() => tx).to.changeEtherBalances([acc2, acc1], [FirstReferralValue, SecondReferralValue]))
-    //     })
-    //
-    //     it("Treasury should get reward", async function () {
-    //
-    //         await contractACDMPlatform.connect(acc3).createOrder(tokenValue, ethers.constants.WeiPerEther)
-    //         const tx = await contractACDMPlatform.connect(acc3).buyOrder(0, {value: ethers.constants.WeiPerEther})
-    //
-    //         const FirstReferralValue = BigInt(1_000_000_000_000_000_000 / 100 * percentFirstReferralLevel)
-    //         const SecondReferralValue = BigInt(1_000_000_000_000_000_000 / 100 * percentSecondReferralLevel)
-    //
-    //         const treasuryReward = FirstReferralValue + SecondReferralValue
-    //         expect(await ethers.provider.getBalance(contractDao.address)).to.be.eq(treasuryReward)
-    //     })
-    // })
+    it("Should be deployed", async function () {
+        expect(contractACDMPlatform.address).to.be.properAddress
 
-//       // https://docs.uniswap.org/protocol/V2/guides/smart-contract-integration/trading-from-a-smart-contract
+    })
+    describe("Selling round", function () {
+
+        describe("buyToken method", function () {
+            it("User should be can buyToken tokens", async function () {
+                let beforeBalanceACMDToken = await acdmToken.balanceOf(acc1.address)
+                const tx = await contractACDMPlatform.buyToken({value: ethers.constants.WeiPerEther})
+
+                expect(await expect(() => tx).to.changeEtherBalance(acc1, BigInt(-ethers.constants.WeiPerEther)))
+                expect(await acdmToken.balanceOf(acc1.address)).to.be.equal(beforeBalanceACMDToken.add(tokenValue))
+                expect(await acdmToken.balanceOf(contractACDMPlatform.address)).to.be.equal(0)
+
+            })
+        })
+    })
+
+    describe("Trading round", function () {
+
+        beforeEach(async function () {
+            await contractACDMPlatform.buyToken({value: ethers.constants.WeiPerEther})
+            await contractACDMPlatform.closeSellingRound()
+            await acdmToken.approve(contractACDMPlatform.address, ethers.constants.WeiPerEther)
+            await contractACDMPlatform.createOrder(tokenValue, ethers.constants.WeiPerEther)
+        })
+
+        describe("createOrder method", function () {
+            it("User should be can Create order to sell tokens", async function () {
+                expect(await acdmToken.balanceOf(acc1.address)).to.be.equal(0)
+            })
+        })
+
+        describe("buyOrder method", function () {
+            it("User should be can Buy order", async function () {
+                const tx = await contractACDMPlatform.connect(acc2).buyOrder(0, {value: ethers.constants.WeiPerEther})
+                const FirstReferralValue = BigInt(1_000_000_000_000_000_000 / 100 * percentFirstReferralLevel)
+                const SecondReferralValue = BigInt(1_000_000_000_000_000_000 / 100 * percentSecondReferralLevel)
+                const treasuryReward = FirstReferralValue + SecondReferralValue
+
+                expect(await expect(() => tx).to.changeEtherBalance(acc1, ethers.constants.WeiPerEther.toBigInt() - treasuryReward))
+                expect(await acdmToken.balanceOf(acc2.address)).to.be.equal(tokenValue)
+            })
+            it("Trying buy not existed order", async function () {
+                await expect(contractACDMPlatform.buyOrder(999, {value: ethers.constants.WeiPerEther})).to.be.revertedWith("Order not exist")
+            })
+        })
+        describe("cancelOrder method", function () {
+
+            it("User should be can cancel order", async function () {
+                await contractACDMPlatform.cancelOrder(0)
+                await expect(contractACDMPlatform.cancelOrder(0)).to.be.revertedWith("Permission denied")
+            })
+        })
+
+    })
+
+    describe("Referral checking", function () {
+        beforeEach(async function () {
+            await contractACDMPlatform.connect(acc3).buyToken({value: ethers.constants.WeiPerEther})
+            await acdmToken.connect(acc3).approve(contractACDMPlatform.address, ethers.constants.WeiPerEther)
+            await contractACDMPlatform.closeSellingRound()
+
+        })
+
+        it("All referrals should get reward", async function () {
+            await contractACDMPlatform.connect(acc1).userRegistration()
+            await contractACDMPlatform.connect(acc2).userRegistrationWithsReferral(acc1.address)
+            await contractACDMPlatform.connect(acc3).userRegistrationWithsReferral(acc2.address)
+
+
+            await contractACDMPlatform.connect(acc3).createOrder(tokenValue, ethers.constants.WeiPerEther)
+            const tx = await contractACDMPlatform.connect(acc3).buyOrder(0, {value: ethers.constants.WeiPerEther})
+
+            const FirstReferralValue = BigInt(1_000_000_000_000_000_000 / 100 * percentFirstReferralLevel)
+            const SecondReferralValue = BigInt(1_000_000_000_000_000_000 / 100 * percentSecondReferralLevel)
+            expect(await expect(() => tx).to.changeEtherBalances([acc2, acc1], [FirstReferralValue, SecondReferralValue]))
+        })
+
+        it("Treasury should get reward", async function () {
+
+            await contractACDMPlatform.connect(acc3).createOrder(tokenValue, ethers.constants.WeiPerEther)
+            const tx = await contractACDMPlatform.connect(acc3).buyOrder(0, {value: ethers.constants.WeiPerEther})
+
+            const FirstReferralValue = BigInt(1_000_000_000_000_000_000 / 100 * percentFirstReferralLevel)
+            const SecondReferralValue = BigInt(1_000_000_000_000_000_000 / 100 * percentSecondReferralLevel)
+
+            const treasuryReward = FirstReferralValue + SecondReferralValue
+            expect(await ethers.provider.getBalance(contractDao.address)).to.be.eq(treasuryReward)
+        })
+    })
+
     describe("Dao voting for treasury", function () {
         function getCallData() {
             const jsonAbi = [{
